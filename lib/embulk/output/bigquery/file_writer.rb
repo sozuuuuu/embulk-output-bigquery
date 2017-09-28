@@ -39,7 +39,7 @@ module Embulk
           return @io if @io
 
           path = sprintf(
-            "#{@task['path_prefix']}#{@task['sequence_format']}#{@task['file_ext']}",
+            "#{@task['path_prefix'].gsub('%', '%%')}#{@task['sequence_format']}#{@task['file_ext']}",
             Process.pid, Thread.current.object_id
           )
           if File.exist?(path)
